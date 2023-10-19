@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор персонажа</title>
+    <link rel="stylesheet" href="/static/styles/characters.css">
+</head>
+<body>
+<div class="character-selector">
+    <div class="character-wrapper">
+        <img src="/media/characters/mario.png" alt="Mario" class="character-image" onclick="selectCharacter('Mario')">
+        <div class="character-name">Марио</div>
+        <div class="character-proffesion">Персонаж</div>
+    </div>
+    <div class="character-wrapper">
+        <img src="/media/characters/einstein.png" alt="Einstein" class="character-image" onclick="selectCharacter('Einstein')">
+        <div class="character-name">Эйнштейн</div>
+        <div class="character-proffesion">Физик-теоретик</div>
+    </div>
+</div>
+<form id="characterForm" action="{% url 'character_selection' %}" method="post"
+      style="display:none;">
+    {% csrf_token %}
+    <input type="hidden" name="selected_character" id="selectedCharacter">
+</form>
+</body>
+<script src="/static/character_selector.js"></script>
+</html>

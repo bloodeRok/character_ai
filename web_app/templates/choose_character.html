@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Character AI Chat</title>
+    <link rel="stylesheet" href="../../static/styles/characters.css">
+</head>
+<body>
+    <div>
+        <h1>Choose your character</h1>
+        <p class="character-name">LoL</p>
+
+        <!-- Добавляем изображение для выбора персонажа -->
+        <img src="../../media/characters/mario.png" alt="Mario" class="character-image">
+    </div>
+
+    <script>
+        function sendMessage() {
+            var user_input = document.getElementById('user_input').value;
+            document.getElementById('user_input').value = "";
+
+            // Отправка запроса к серверу
+            fetch(`/get_ai_response/?user_input=${user_input}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('chat').innerHTML += `<p>User: ${user_input}</p>`;
+                    document.getElementById('chat').innerHTML += `<p>AI: ${data.response}</p>`;
+                });
+        }
+    </script>
+</body>
+</html>
+
